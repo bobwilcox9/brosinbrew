@@ -34,12 +34,22 @@ for rr in range(ry):
                 cols.append(e)
     rows.append(cols)
 
+############################
+# Define functions
+
 def onPress():
     for row in rows:
         for col in row:
             print col.get(),
         print
 
-Button(text='Submit', command=onPress).grid(row=8, column=0)
+def submit_output():
+    output.config(text='Hello')
+
+output = Label()
+output.grid(row=8, column=2)
+#Button(text='Submit', command=onPress).grid(row=8, column=0)
+Button(text='Submit', command=submit_output).grid(row=8, column=0)
 Button(text="Quit", command=quit).grid(row=8, column=1)
+
 mainloop()

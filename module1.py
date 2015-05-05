@@ -17,6 +17,7 @@ additions = '1st', '2nd', '3rd', '4th', '5th', '6th'
 ry=7
 rx=7
 rows = []
+input = []
 for rr in range(ry):
     cols = []
     for cc in range(rx):
@@ -30,26 +31,35 @@ for rr in range(ry):
             else:
                 e = Entry()
                 e.grid(row=rr, column=cc)
-#                e.insert(END, '%d,%d' % (rr, cc))
+                e.insert(END, '%d' % ((rx-1)*(rr-1)+cc))
                 cols.append(e)
     rows.append(cols)
 
 ############################
 # Define functions
 
-def onPress():
+# def onPress():
+#     for row in rows:
+#         for col in row:
+#             print col.get(),
+#         print
+
+def submit_output():
+    input = []
+    # read data. Increments left to right
     for row in rows:
         for col in row:
-            print col.get(),
-        print
+          input.append(col.get())
+    # manipulate data
+    output.config(text=input[0])
 
-def output_label(label):
-    label.config(text='Hello')
+############################
+# Arrange buttons and output
 
 output = Label()
 output.grid(row=8, column=2)
 #Button(text='Submit', command=onPress).grid(row=8, column=0)
-Button(text='Submit', command=output_label(output)).grid(row=8, column=0)
+Button(text='Submit', command=submit_output).grid(row=8, column=0)
 Button(text="Quit", command=quit).grid(row=8, column=1)
 
 mainloop()
